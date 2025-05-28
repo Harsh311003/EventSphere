@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EventSphereManagementApplication {
 
 	public static void main(String[] args) {
-		System.out.println("====================== hello ======================");
+//		System.out.println("====================== Event Sphere ======================");
 		SpringApplication.run(EventSphereManagementApplication.class, args);
 	}
 
