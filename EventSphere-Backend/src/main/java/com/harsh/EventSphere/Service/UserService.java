@@ -1,54 +1,63 @@
 package com.harsh.EventSphere.Service;
 
+import com.harsh.EventSphere.Dto.UserUpdateRequestDto;
 import com.harsh.EventSphere.Exception.EmailAlreadyInUseException;
 import com.harsh.EventSphere.Exception.UserNotFoundException;
+import com.harsh.EventSphere.Exception.IncorrectPasswordException;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public boolean existsByEmail(String email){
-        return userRepository.existsByEmail(email);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
+
 
     public User findByID(Long id){
-        if (userRepository.findById(id).isEmpty()) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isEmpty()){
             throw new UserNotFoundException("User not found!");
         }
-        return userRepository.findById(id).get();
+        return userOptional.get();
     }
 
-    public String encodePassword(String password){
-        return passwordEncoder.encode(password);
-    }
 
-    public void saveUser(User user){
 
-        // check if user already exists
-        if(userRepository.existsByEmail(user.getEmail())){
-            throw new EmailAlreadyInUseException("Email already in use!");
+    public User findByEmail(String email){
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if(userOptional.isEmpty()){
+            throw new UserNotFoundException("User not found!");
         }
 
-        //Encode the password
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        userRepository.save(user);
+        return userOptional.get();
     }
 
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    public void updateUser(String email, UserUpdateRequestDto userUpdateRequestDto){
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if(userOptional.isEmpty()){
+            throw new UserNotFoundException("User not found!");
+        }
+        User user = userOptional.get();
+
+        user.setFirstName(userUpdateRequestDto.getFirstName());
+        user.setLastName(userUpdateRequestDto.getLastName());
+        user.setPhone(userUpdateRequestDto.getPhone());
+
+        userRepository.save(user);
+    }
+
 }
