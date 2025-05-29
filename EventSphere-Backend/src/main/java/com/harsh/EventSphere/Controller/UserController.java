@@ -1,13 +1,9 @@
 package com.harsh.EventSphere.Controller;
 
-import com.harsh.EventSphere.Dto.LoginRequestDto;
-import com.harsh.EventSphere.Dto.LoginResponseDto;
-import com.harsh.EventSphere.Dto.UserRegistrationRequestDto;
 import com.harsh.EventSphere.Dto.UserUpdateRequestDto;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Service.UserService;
-import com.harsh.EventSphere.Utils.JwtUtils.JwtUtils;
-import com.harsh.EventSphere.Utils.JwtUtils.SecurityUtils;
+import com.harsh.EventSphere.Utils.SecurityUtils.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

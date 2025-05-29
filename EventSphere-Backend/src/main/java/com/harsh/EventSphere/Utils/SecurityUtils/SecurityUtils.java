@@ -1,4 +1,4 @@
-package com.harsh.EventSphere.Utils.JwtUtils;
+package com.harsh.EventSphere.Utils.SecurityUtils;
 
 import com.harsh.EventSphere.Exception.UserNotFoundException;
 import org.springframework.security.core.Authentication;
