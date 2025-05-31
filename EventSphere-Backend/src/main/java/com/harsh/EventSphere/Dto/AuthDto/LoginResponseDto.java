@@ -1,4 +1,4 @@
-package com.harsh.EventSphere.Dto;
+package com.harsh.EventSphere.Dto.AuthDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.harsh.EventSphere.Dto;
+package com.harsh.EventSphere.Dto.AuthDto;
 
 import com.harsh.EventSphere.Enum.Role;
 import jakarta.validation.constraints.Email;
