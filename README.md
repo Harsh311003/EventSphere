@@ -1,4 +1,4 @@
-# EventSphere - An Event Management ApplicationMore actions
+# EventSphere - An Event Management Application
 
 EventSphere is a powerful event management service that leverages Spring Boot and various other technologies to provide a secure and efficient platform for managing events and users. The project is well-structured and follows best practices for Spring Boot applications.
 
