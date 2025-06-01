@@ -6,7 +6,9 @@ import com.harsh.EventSphere.Dto.AuthDto.LoginResponseDto;
 import com.harsh.EventSphere.Dto.AuthDto.UserRegistrationRequestDto;
 import com.harsh.EventSphere.Dto.UserDto.UserUpdateRequestDto;
 import com.harsh.EventSphere.Model.User;
+import com.harsh.EventSphere.Model.Ticket;
 import com.harsh.EventSphere.Service.UserService;
+import com.harsh.EventSphere.Service.TicketService;
 import com.harsh.EventSphere.Utils.SecurityUtils.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class UserController {
 
 
     private final SecurityUtils securityUtils;
+    private final TicketService ticketService;
     private final UserService userService;
 
 
@@ -61,6 +64,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/tickets")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> getTickets(){
+        List<Ticket> tickets = ticketService.getTickets();
+        return ResponseEntity.ok(tickets);
+    }
 
     //////////////////////////////////// Helper Methods ////////////////////////////////////
 
