@@ -1,6 +1,6 @@
 package com.harsh.EventSphere.Service;
 
-import com.harsh.EventSphere.Dto.EventDto.EventCreateRequestDto;Add commentMore actions
+import com.harsh.EventSphere.Dto.EventDto.EventCreateRequestDto;
 import com.harsh.EventSphere.Dto.EventDto.EventUpdateRequestDto;
 import com.harsh.EventSphere.Exception.EventNotFoundException;
 import com.harsh.EventSphere.Exception.UserNotFoundException;

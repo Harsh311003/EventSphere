@@ -1,13 +1,10 @@
 package com.harsh.EventSphere.Service;
 
-import com.harsh.EventSphere.Dto.UserUpdateRequestDto;
-import com.harsh.EventSphere.Exception.EmailAlreadyInUseException;
+import com.harsh.EventSphere.Dto.UserDto.UserUpdateRequestDto;
 import com.harsh.EventSphere.Exception.UserNotFoundException;
-import com.harsh.EventSphere.Exception.IncorrectPasswordException;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +43,7 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    public void updateUser(String email, UserUpdateRequestDto userUpdateRequestDto){
+    public void updateUser(String email, @Valid UserUpdateRequestDto userUpdateRequestDto){
         Optional<User> userOptional = userRepository.findByEmail(email);
         if(userOptional.isEmpty()){
             throw new UserNotFoundException("User not found!");

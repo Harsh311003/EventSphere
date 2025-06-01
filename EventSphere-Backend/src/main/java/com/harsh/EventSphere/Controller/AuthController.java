@@ -1,6 +1,9 @@
 package com.harsh.EventSphere.Controller;
 
 import com.harsh.EventSphere.Dto.*;
+import com.harsh.EventSphere.Dto.AuthDto.LoginRequestDto;
+import com.harsh.EventSphere.Dto.AuthDto.LoginResponseDto;
+import com.harsh.EventSphere.Dto.AuthDto.UserRegistrationRequestDto;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Service.AuthService;
 import com.harsh.EventSphere.Utils.JwtUtils.JwtUtils;

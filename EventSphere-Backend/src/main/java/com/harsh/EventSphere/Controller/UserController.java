@@ -4,6 +4,7 @@ package com.harsh.EventSphere.Controller;
 import com.harsh.EventSphere.Dto.AuthDto.LoginRequestDto;
 import com.harsh.EventSphere.Dto.AuthDto.LoginResponseDto;
 import com.harsh.EventSphere.Dto.AuthDto.UserRegistrationRequestDto;
+import com.harsh.EventSphere.Dto.UserDto.UserUpdateRequestDto;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Service.UserService;
 import com.harsh.EventSphere.Utils.SecurityUtils.SecurityUtils;
