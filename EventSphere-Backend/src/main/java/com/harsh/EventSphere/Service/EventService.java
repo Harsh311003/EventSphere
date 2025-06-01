@@ -7,6 +7,7 @@ import com.harsh.EventSphere.Exception.UserNotFoundException;
 import com.harsh.EventSphere.Model.Event;
 import com.harsh.EventSphere.Model.User;
 import com.harsh.EventSphere.Repository.EventRepository;
+import com.harsh.EventSphere.Repository.TicketRepository;
 import com.harsh.EventSphere.Repository.UserRepository;
 import com.harsh.EventSphere.Utils.SecurityUtils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class EventService {
 
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final TicketRepository ticketRepository;
     private final SecurityUtils securityUtils;
 
     public void createEvent(EventCreateRequestDto eventDto) {
@@ -45,6 +47,10 @@ public class EventService {
 
     public void deleteEvent(Long eventId) {
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new EventNotFoundException("Event not found!"));
+
+        // Also Delete All the tickets of this eventMore actions
+        ticketRepository.deleteByEventId(eventId);
+
         eventRepository.delete(event);
     }
 
@@ -89,6 +95,7 @@ public class EventService {
         event.setEndTime(eventDto.getEndTime());
         event.setLocation(eventDto.getLocation());
         event.setCategory(eventDto.getCategory());
+        event.setQuantity(eventDto.getQuantity());
         event.setPrice(eventDto.getPrice());
         event.setContact(eventDto.getContact());
         event.setImageUrl(eventDto.getImageUrl());
@@ -114,6 +121,9 @@ public class EventService {
         }
         if(eventDto.getCategory() != null) {
             event.setCategory(eventDto.getCategory());
+        }
+        if(eventDto.getQuantity() != null){
+            event.setQuantity(eventDto.getQuantity());
         }
         if(eventDto.getPrice() != null) {
             event.setPrice(eventDto.getPrice());
